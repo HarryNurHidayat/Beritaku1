@@ -48,6 +48,7 @@ public class HeadLineActivity extends AppCompatActivity implements NewsAdapter.o
         loadJSON();
     }
 
+    // Memanggil class Utama pada tampilan awal
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.tbNews);
         toolbar.setTitle("Berita Utama");
@@ -65,6 +66,7 @@ public class HeadLineActivity extends AppCompatActivity implements NewsAdapter.o
         return super.onOptionsItemSelected(item);
     }
 
+    // Mengakses API yang terdapat di class NewsAPI
     private void loadJSON() {
         progressDialog.show();
         AndroidNetworking.get(NewsApi.GET_TOP_HEADLINES)

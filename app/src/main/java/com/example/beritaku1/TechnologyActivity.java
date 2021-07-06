@@ -48,6 +48,7 @@ public class TechnologyActivity extends AppCompatActivity implements NewsAdapter
         loadJSON();
     }
 
+    // Memanggil class Teknologi pada tampilan awal
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.tbNews);
         toolbar.setTitle("Berita Teknologi");
@@ -64,6 +65,7 @@ public class TechnologyActivity extends AppCompatActivity implements NewsAdapter
         return super.onOptionsItemSelected(item);
     }
 
+    // Mengakses API yang terdapat di class NewsAPI
     private void loadJSON() {
         progressDialog.show();
         AndroidNetworking.get(NewsApi.GET_CATEGORY_TECHNOLOGY)
@@ -86,12 +88,15 @@ public class TechnologyActivity extends AppCompatActivity implements NewsAdapter
                                 modelNews.add(dataApi);
                                 showNews();
                             }
+
+                            // akan menampilkan pesan apabila data yang ingin diakses gagal
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(TechnologyActivity.this, "Gagal menampilkan data!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
+                    // Menampilkan pesan apabila terjadi error saat untuk mendapatkan berita
                     @Override
                     public void onError(ANError anError) {
                         progressDialog.dismiss();
@@ -99,7 +104,7 @@ public class TechnologyActivity extends AppCompatActivity implements NewsAdapter
                     }
                 });
     }
-
+    // berfungsi untuk menampilkan berita dari class modelnews
     private void showNews() {
         newsAdapter = new NewsAdapter(TechnologyActivity.this, modelNews, this);
         rvTechno.setAdapter(newsAdapter);

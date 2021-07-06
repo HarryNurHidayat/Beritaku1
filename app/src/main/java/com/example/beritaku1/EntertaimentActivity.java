@@ -48,6 +48,7 @@ public class EntertaimentActivity extends AppCompatActivity implements NewsAdapt
         loadJSON();
     }
 
+    // Memanggil class Hiburan pada tampilan awal
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.tbNews);
         toolbar.setTitle("Berita Hiburan");
@@ -64,6 +65,7 @@ public class EntertaimentActivity extends AppCompatActivity implements NewsAdapt
         return super.onOptionsItemSelected(item);
     }
 
+    // Mengakses API yang terdapat di class NewsAPI
     private void loadJSON() {
         progressDialog.show();
         AndroidNetworking.get(NewsApi.GET_CATEGORY_ENTERTAINMENT)
@@ -86,12 +88,15 @@ public class EntertaimentActivity extends AppCompatActivity implements NewsAdapt
                                 modelNews.add(dataApi);
                                 showNews();
                             }
+
+                            // akan menampilkan pesan apabila data yang ingin diakses gagal
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(EntertaimentActivity.this, "Gagal menampilkan data!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
+                    // Menampilkan pesan apabila terjadi error saat untuk mendapatkan berita
                     @Override
                     public void onError(ANError anError) {
                         progressDialog.dismiss();
@@ -101,6 +106,7 @@ public class EntertaimentActivity extends AppCompatActivity implements NewsAdapt
                 });
     }
 
+    // berfungsi untuk menampilkan berita dari class modelnews
     private void showNews() {
         newsAdapter = new NewsAdapter(EntertaimentActivity.this, modelNews, this);
         rvEntertaiment.setAdapter(newsAdapter);

@@ -48,6 +48,7 @@ public class SportsNewsActivity extends AppCompatActivity implements NewsAdapter
         loadJSON();
     }
 
+    // Memanggil class Olahraga pada tampilan awal
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.tbNews);
         toolbar.setTitle("Berita Olahraga");
@@ -63,7 +64,7 @@ public class SportsNewsActivity extends AppCompatActivity implements NewsAdapter
         }
         return super.onOptionsItemSelected(item);
     }
-
+    // Mengakses API yang terdapat di class NewsAPI
     private void loadJSON() {
         progressDialog.show();
         AndroidNetworking.get(NewsApi.GET_CATEGORY_SPORTS)
@@ -86,12 +87,14 @@ public class SportsNewsActivity extends AppCompatActivity implements NewsAdapter
                                 modelNews.add(dataApi);
                                 showNews();
                             }
+                            // akan menampilkan pesan apabila data yang ingin diakses gagal
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(SportsNewsActivity.this, "Gagal menampilkan data!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
+                    // Menampilkan pesan apabila terjadi error saat untuk mendapatkan berita
                     @Override
                     public void onError(ANError anError) {
                         progressDialog.dismiss();
@@ -100,6 +103,7 @@ public class SportsNewsActivity extends AppCompatActivity implements NewsAdapter
                 });
     }
 
+    // berfungsi untuk menampilkan berita dari class modelnews
     private void showNews() {
         newsAdapter = new NewsAdapter(SportsNewsActivity.this, modelNews, this);
         rvSportNews.setAdapter(newsAdapter);

@@ -48,6 +48,7 @@ public class HealthActivity extends AppCompatActivity implements NewsAdapter.onS
         loadJSON();
     }
 
+    // Memanggil class Kesehatan pada tampilan awal
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.tbNews);
         toolbar.setTitle("Berita Kesehatan");
@@ -64,6 +65,7 @@ public class HealthActivity extends AppCompatActivity implements NewsAdapter.onS
         return super.onOptionsItemSelected(item);
     }
 
+    // Mengakses API yang terdapat di class NewsAPI
     private void loadJSON() {
         progressDialog.show();
         AndroidNetworking.get(NewsApi.GET_CATEGORY_HEALTH)

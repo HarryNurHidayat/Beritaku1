@@ -49,6 +49,7 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
         loadJSON();
     }
 
+    // Memanggil class Bisnis pada tampilan awal
     private void setupToolbar() {
         Toolbar toolbar = findViewById(R.id.tbNews);
         toolbar.setTitle("Berita Bisnis");
@@ -65,6 +66,7 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
         return super.onOptionsItemSelected(item);
     }
 
+    // Mengakses API yang terdapat di class NewsAPI
     private void loadJSON() {
         progressDialog.show();
         AndroidNetworking.get(NewsApi.GET_CATEGORY_BUSINESS)
@@ -87,12 +89,14 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
                                 modelNews.add(dataApi);
                                 showNews();
                             }
+                            // akan menampilkan pesan apabila data yang ingin diakses gagal
                         } catch (JSONException e) {
                             e.printStackTrace();
                             Toast.makeText(BusinessActivity.this, "Gagal menampilkan data!", Toast.LENGTH_SHORT).show();
                         }
                     }
 
+                    // Menampilkan pesan apabila terjadi error saat untuk mendapatkan berita
                     @Override
                     public void onError(ANError anError) {
                         progressDialog.dismiss();
@@ -102,6 +106,7 @@ public class BusinessActivity extends AppCompatActivity implements NewsAdapter.o
                 });
     }
 
+    // berfungsi untuk menampilkan berita dari class modelnews
     private void showNews() {
         newsAdapter = new NewsAdapter(BusinessActivity.this, modelNews, this);
         rvBusiness.setAdapter(newsAdapter);
